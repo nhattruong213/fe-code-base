@@ -1,0 +1,182 @@
+import { PaletteOptions } from '@mui/material/styles/createPalette';
+
+export const palette: PaletteOptions = {
+  // Primitive color
+  blue: {
+    '900': '#004D60',
+    '800': '#006983',
+    '700': '#008BAD',
+    '600': '#00A1C9',
+    '500': '#00B1DE',
+    '400': '#44C5E5',
+    '300': '#5FD7F5',
+    '200': '#A4E2F6',
+    '100': '#DAF3FC',
+    '50': '#F6FDFF',
+    main: '#00A1C9',
+  },
+
+  yellow: {
+    '900': '#FF7B00',
+    '800': '#FFA800',
+    '700': '#FFC100',
+    '600': '#FFDA00',
+    '500': '#FFF000',
+    '400': '#FBED3C',
+    '300': '#FDF166',
+    '200': '#FEF694',
+    '100': '#FFFABF',
+    '50': '#FFFDE5',
+    main: '#FFF000',
+  },
+
+  gray: {
+    A100: '#999999',
+    '900': '#1A1A1C',
+    '800': '#414143',
+    '700': '#626264',
+    '600': '#757578',
+    '500': '#949497',
+    '400': '#B4B4B7',
+    '300': '#D8D8DB',
+    '200': '#E8E8EB',
+    '100': '#F1F1F4',
+    '50': '#F8F8FB',
+    '20': '#E2E2E2',
+    main: '#EFF1F3',
+  },
+
+  blueGreen: {
+    '900': '#005448',
+    '800': '#008074',
+    '700': '#009185',
+    '600': '#009E93',
+    '500': '#00ADA4',
+    '400': '#44BCB5',
+    '300': '#7DCFCB',
+    '200': '#B1E2DF',
+    '100': '#E0F3F3',
+    '50': '#F7FDF9',
+    main: '#00ADA4',
+  },
+
+  pink: {
+    '900': '#8D2260',
+    '800': '#B4286A',
+    '700': '#C92B6F',
+    '600': '#E02E76',
+    '500': '#F2317A',
+    '400': '#F24D8F',
+    '300': '#F46CA4',
+    '200': '#F696BF',
+    '100': '#F8BFD8',
+    '50': '#FCE6EF',
+    main: '#F46CA4',
+  },
+
+  red: {
+    '900': '#C92800',
+    '800': '#E1380B',
+    '700': '#EF4011',
+    '600': '#FD4717',
+    '500': '#FF4D1B',
+    '400': '#FF6A3E',
+    '300': '#FF8662',
+    '200': '#FFA98F',
+    '100': '#FFCBBB',
+    '50': '#FDE9E7',
+    main: '#FD4717',
+  },
+
+  limeGreen: {
+    '900': '#2E6C11',
+    '800': '#538E24',
+    '700': '#67A22D',
+    '600': '#7CB637',
+    '500': '#8CC63F',
+    '400': '#9DCF5D',
+    '300': '#AFD77B',
+    '200': '#C6E3A1',
+    '100': '#DDEEC6',
+    '50': '#F1F8E8',
+    main: '#8CC63F',
+  },
+
+  purple: {
+    '900': '#441EA2',
+    '800': '#572BAF',
+    '700': '#6331B6',
+    '600': '#703AC0',
+    '500': '#7A3FC6',
+    '400': '#8E5DCF',
+    '300': '#A27BD8',
+    '200': '#BDA2E3',
+    '100': '#D7C7EE',
+    '50': '#EFE8F8',
+    main: '#7A3FC6',
+  },
+
+  gabaGreen: {
+    '900': '#005F00',
+    '800': '#007D00',
+    '700': '#008E11',
+    '600': '#00A020',
+    '500': '#00AF28',
+    '400': '#44BB4E',
+    '300': '#6BC76E',
+    '200': '#98D699',
+    '100': '#C1E6C1',
+    '50': '#E5F5E6',
+    main: '#00AF28',
+  },
+
+  // Semantic color
+  background: {
+    primary: '#FFFFFF',
+    secondary: '#F8F8FB',
+    disabled: '#F1F1F4',
+    error: '#FDE9E7',
+  },
+
+  text: {
+    body: '#1A1A1C',
+    description: '#757578',
+    placeholder: '#757578',
+    onfill: '#FFFFFF',
+    link: '#00A1C9',
+    error: '#FF4D1B',
+    disabled: '#949497',
+  },
+
+  border: {
+    field: '#1A1A1C',
+    input: '#D8D8DB',
+    divider: '#F1F1F4',
+    warning: '#FFC100',
+    selected: '#00A1C9',
+    alert: '#E0210B',
+    disabled: '#949497',
+    error: '#FF4D1B',
+  },
+
+  icon: {
+    default: '#1A1A1C',
+    primary: '#1A1A1C',
+    secondary: '#A4E2F6',
+    onfill: '#FFFFFF',
+    active: '#00A1C9',
+    error: '#FF4D1B',
+    success: '#7CB637',
+    disabled: '#949497',
+  },
+
+  status: {
+    error: '#FF4D1B',
+    success: '#7CB637',
+    warning: '#FFC100',
+  },
+
+  action: {
+    disabled: '#949497',
+  },
+};
