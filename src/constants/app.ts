@@ -97,3 +97,5 @@ export const CMD = {
   PREMIUM_IMMEDIATE_CONFIRM: 'to-premium-immediate-confirm',
   PREMIUM_IMMEDIATE_DONE: 'to-premium-immediate-done',
 };
+
+export const drawerWidth = 260;

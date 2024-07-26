@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { alpha, createTheme } from '@mui/material';
 
 import { breakpoints } from './breakpoints';
 import { palette } from './palette';
@@ -7,9 +7,15 @@ import { typography } from './typography';
 export const theme = createTheme({
   palette,
   typography,
-  spacing: 8, // theme.spacing(2) => (8 * 2)px = 16px,
+  spacing: 8,
   breakpoints,
+  direction: 'ltr',
   shape: { borderRadius: 6 },
+  customShadows: {
+    button: `0 2px #0000000b`,
+    text: `0 -1px 0 rgb(0 0 0 / 12%)`,
+    z1: `0px 2px 8px ${alpha('#1A1A1C', 0.15)}`
+  },
   components: {
     MuiCssBaseline: {
       styleOverrides: ({ palette }) => ({

@@ -1,13 +1,7 @@
-import { Alert } from "@mui/material";
-
-import { Check } from "@/modules/private";
-
+import { LayoutDashboard } from "@/components/organisms/layout";
 
 export default function Home() {
   
-  return <>
-    <Check />
-    <Alert />
-  </>;
+  return <LayoutDashboard />
 }
 

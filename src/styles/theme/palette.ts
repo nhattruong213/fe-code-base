@@ -1,7 +1,6 @@
 import { PaletteOptions } from '@mui/material/styles/createPalette';
 
 export const palette: PaletteOptions = {
-  // Primitive color
   blue: {
     '900': '#004D60',
     '800': '#006983',

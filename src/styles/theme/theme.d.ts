@@ -53,7 +53,13 @@ declare module '@mui/material/styles' {
     warning: string;
   }
 
-  interface Theme {}
+  interface Theme {
+    customShadows: {
+      button: string;
+      text: string;
+      z1: string;
+    };
+  }
 
   interface ThemeOptions {
     boxShadows?: {
@@ -63,6 +69,11 @@ declare module '@mui/material/styles' {
       lg?: string;
       xl?: string;
       xxl?: string;
+    };
+    customShadows?: {
+      button?: string;
+      text?: string;
+      z1?: string;
     };
   }
 
