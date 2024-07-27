@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 
+import { MenuGroup } from './declaration';
 import { menuItems } from './menuItem';
 import { NavGroup } from './navGroup';
 
@@ -7,7 +8,7 @@ import { NavGroup } from './navGroup';
 
 export const Navigation = () => {
 
-  const navGroups = menuItems.items.map((item) => {
+  const navGroups = menuItems.items.map((item: MenuGroup) => {
       return <NavGroup key={item.id} item={item} />
   });
 

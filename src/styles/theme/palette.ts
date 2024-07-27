@@ -8,11 +8,11 @@ export const palette: PaletteOptions = {
     '600': '#00A1C9',
     '500': '#00B1DE',
     '400': '#44C5E5',
-    '300': '#5FD7F5',
+    '300': '#1677ff',
     '200': '#A4E2F6',
     '100': '#DAF3FC',
     '50': '#F6FDFF',
-    main: '#00A1C9',
+    main: '#e6f4ff',
   },
 
   yellow: {

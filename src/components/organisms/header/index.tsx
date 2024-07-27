@@ -18,7 +18,7 @@ export const Header = () => {
   const headerContent = useMemo(() => <HeaderContent />, []);
   
   const mainHeader = (
-    <Toolbar>
+    <Toolbar sx={{ backgroundColor: '#fff' }}>
       <IconButton
         disableRipple
         aria-label="open drawer"

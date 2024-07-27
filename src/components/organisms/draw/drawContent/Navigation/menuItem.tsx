@@ -1,5 +1,5 @@
-import { dashboard, pages } from "./declaration";
+import { dashboard, pages, style } from "./declaration";
 
 export const menuItems = {
-  items: [dashboard, pages]
+  items: [dashboard, pages, style]
 };

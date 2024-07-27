@@ -1,7 +1,7 @@
-import { LayoutDashboard } from "@/components/organisms/layout";
+import { HomePage } from "@/modules/private/home";
 
 export default function Home() {
   
-  return <LayoutDashboard />
+  return <HomePage />
 }
 

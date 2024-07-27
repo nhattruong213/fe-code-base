@@ -52,7 +52,7 @@ export const MainCard = forwardRef(function MainCard(
       sx={(theme) => ({
         border: border ? '1px solid' : 'none',
         borderRadius: 2,
-        borderColor: theme.palette.gray,
+        borderColor: theme.palette.gray[200],
         boxShadow: boxShadow && (!border || theme.palette.mode === 'dark') ? shadow || `0px 2px 8px ${theme.palette.gray[900]}` : 'inherit',
         ':hover': {
           boxShadow: boxShadow ? shadow || `0px 2px 8px ${theme.palette.gray[900]}` : 'inherit'

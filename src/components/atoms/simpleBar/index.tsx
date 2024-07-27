@@ -1,3 +1,5 @@
+import 'simplebar-react/dist/simplebar.min.css';
+
 import Box from '@mui/material/Box';
 import { alpha, styled } from '@mui/material/styles';
 import React from 'react';
@@ -16,7 +18,7 @@ const SimpleBarStyle = styled(SimpleBar)(({ theme }) => ({
   maxHeight: '100%',
   '& .simplebar-scrollbar': {
     '&:before': {
-      background: alpha(theme.palette.grey[500], 0.48),
+      background: alpha(theme.palette.gray[500], 0.48),
     },
     '&.simplebar-visible:before': {
       opacity: 1,

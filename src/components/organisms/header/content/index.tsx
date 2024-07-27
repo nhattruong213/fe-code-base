@@ -6,7 +6,6 @@ import { Profile } from './profile';
 
 export const HeaderContent = () => {
 
-
   return (
     <>
       <Box sx={{ flexGrow: 1 }} />

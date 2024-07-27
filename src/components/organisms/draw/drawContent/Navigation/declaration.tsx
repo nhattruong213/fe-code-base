@@ -1,14 +1,35 @@
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import TypeSpecimenOutlinedIcon from '@mui/icons-material/TypeSpecimenOutlined';
+import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 
-export const dashboard = {
+export type MenuGroup = {
+  id: string;
+  title: string;
+  type: 'group';
+  children: MenuItem[];
+};
+
+export type MenuItem = {
+  id: string;
+  title: string;
+  type: 'item' | 'collapse';
+  url: string;
+  icon?: React.ElementType;
+  target?: boolean;
+  external?: boolean;
+  disabled?: boolean;
+  children?: MenuItem[];
+};
+
+export const dashboard: MenuGroup = {
   id: 'group-dashboard',
-  title: 'Navigation',
+  title: 'Home',
   type: 'group',
   children: [
     {
       id: 'dashboard',
-      title: 'Home',
+      title: 'Dashboard',
       type: 'item',
       url: '/',
       icon: HomeOutlinedIcon,
@@ -16,7 +37,7 @@ export const dashboard = {
   ]
 }
 
-export const pages = {
+export const pages: MenuGroup = {
   id: 'authentication',
   title: 'Company',
   type: 'group',
@@ -24,18 +45,60 @@ export const pages = {
     {
       id: 'employee',
       title: 'Employee',
-      type: 'item',
-      url: '/',
+      type: 'collapse',
+      url: '/employees',
       icon: PeopleAltOutlinedIcon,
-      target: true
+      children: [
+        {
+          id: 'employee2',
+          title: 'Official',
+          type: 'item',
+          url: '/employees/official',
+        },
+        {
+          id: 'employee3',
+          title: 'Probationary',
+          type: 'item',
+          url: '/employees/probationary',
+        }
+      ]
     },
     {
       id: 'use',
-      title: 'User',
+      title: 'Job',
       type: 'item',
-      url: '/',
-      icon: PeopleAltOutlinedIcon,
-      target: true
+      url: '/users',
+      icon: WorkOutlineOutlinedIcon,
+    }
+  ]
+}
+
+
+export const style: MenuGroup = {
+  id: 'style',
+  title: 'Style',
+  type: 'group',
+  children: [
+    {
+      id: 'typography',
+      title: 'Typography',
+      type: 'collapse',
+      url: '/typography',
+      icon: TypeSpecimenOutlinedIcon,
+      children: [
+        {
+          id: 'typography1',
+          title: 'Heading 1',
+          type: 'item',
+          url: '/typography/h1',
+        },
+        {
+          id: 'typography2',
+          title: 'Heading 2',
+          type: 'item',
+          url: '/typography/h2',
+        }
+      ]
     }
   ]
 }

@@ -8,13 +8,13 @@ const DrawerHeaderStyled = styled(Box, { shouldForwardProp: (prop) => prop !== '
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'start',
-  paddingLeft: theme.spacing(5)
+  paddingLeft: theme.spacing(3)
 }));
 
 export const DrawHeader = () => {
   return (
     <DrawerHeaderStyled>
-      <Logo sx={{ width: 90 }} />
+      <Logo sx={{ width: 140 }} />
     </DrawerHeaderStyled>
   )
 }

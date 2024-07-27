@@ -3601,7 +3601,7 @@ simplebar-core@^1.2.6:
     lodash "^4.17.21"
     lodash-es "^4.17.21"
 
-simplebar-react@^3.2.6:
+simplebar-react@^3.2.4:
   version "3.2.6"
   resolved "https://registry.npmjs.org/simplebar-react/-/simplebar-react-3.2.6.tgz"
   integrity sha512-8jDiBuVCG86JmOrsmkA+4q77iFAEbhU9EX62PohLisg3dnxdLXFFhkxnx2Es3Cxt8IlZFlJsF9GaobFL3ukwiA==
