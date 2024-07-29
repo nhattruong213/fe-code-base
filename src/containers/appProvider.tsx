@@ -12,7 +12,7 @@ export const queryClient = new QueryClient({
   },
 });
 
-export async function AppProvider({ children }: React.PropsWithChildren) {
+export function AppProvider({ children }: React.PropsWithChildren) {
   return (
     <ThemeRegistry>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>

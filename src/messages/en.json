@@ -11,5 +11,9 @@
     "typography": "Typography",
     "heading1": "Heading 1",
     "heading2": "Heading 2"
+  },
+  "Header": {
+    "en": "English (en)",
+    "vi": "Vietnamese (vi)"
   }
 }
