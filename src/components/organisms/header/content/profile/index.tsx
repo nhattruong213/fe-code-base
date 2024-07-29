@@ -1,24 +1,37 @@
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import { Box, ButtonBase, CardContent, ClickAwayListener, Grid, IconButton, Paper, Popper, Stack, Tab, Tabs, Tooltip, Typography } from "@mui/material";
-import { ReactNode, useRef, useState } from "react";
+import {
+  Box,
+  ButtonBase,
+  CardContent,
+  ClickAwayListener,
+  Grid,
+  IconButton,
+  Paper,
+  Popper,
+  Stack,
+  Tab,
+  Tabs,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import { ReactNode, useRef, useState } from 'react';
 
-import { AvatarCustom } from "@/components/atoms/avatar";
-import { MainCard } from "@/components/atoms/mainCard";
-import { Transitions } from "@/components/atoms/transitions";
+import { AvatarCustom } from '@/components/atoms/avatar';
+import { MainCard } from '@/components/atoms/mainCard';
+import { Transitions } from '@/components/atoms/transitions';
 import { theme } from '@/styles/theme';
 
 import { ProfileTab } from './profileTab';
 import { SettingTab } from './settingTab';
 
-
 const a11yProps = (index: string | number) => {
   return {
     id: `profile-tab-${index}`,
-    'aria-controls': `profile-tabpanel-${index}`
+    'aria-controls': `profile-tabpanel-${index}`,
   };
-}
+};
 
 interface TabPanelProps {
   children?: ReactNode;
@@ -33,16 +46,15 @@ const TabPanel = ({ children, value, index, ...other }: TabPanelProps) => {
       {value === index && children}
     </div>
   );
-}
+};
 
 export const Profile = () => {
-
   const anchorRef = useRef<HTMLButtonElement | null>(null);
-  
+
   const [open, setOpen] = useState<boolean>(false);
 
   const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen);
+    setOpen((prevOpen) => !prevOpen);
   };
 
   const handleClose = (event: any) => {
@@ -67,7 +79,7 @@ export const Profile = () => {
           bgcolor: open ? `${theme.palette.gray[100]}` : 'transparent',
           borderRadius: 1,
           '&:hover': { bgcolor: theme.palette.gray[100] },
-          '&:focus-visible': { outline: `2px solid ${theme.palette.gray[100]}`, outlineOffset: 2 }
+          '&:focus-visible': { outline: `2px solid ${theme.palette.gray[100]}`, outlineOffset: 2 },
         })}
         aria-label="open profile"
         ref={anchorRef}
@@ -78,7 +90,7 @@ export const Profile = () => {
         <Stack direction="row" spacing={1.25} alignItems="center" sx={{ p: 0.5 }}>
           <AvatarCustom alt="profile user" src={'/images/user/avatar-1.png'} size="sm" />
           <Typography variant="subtitle1" sx={{ textTransform: 'capitalize' }}>
-            {'Truong Nguyen'}
+            {'Truong N'}
           </Typography>
         </Stack>
       </ButtonBase>
@@ -93,10 +105,10 @@ export const Profile = () => {
             {
               name: 'offset',
               options: {
-                offset: [0, 9]
-              }
-            }
-          ]
+                offset: [0, 9],
+              },
+            },
+          ],
         }}
       >
         {({ TransitionProps }) => (
@@ -108,7 +120,7 @@ export const Profile = () => {
                     <Grid container justifyContent="space-between" alignItems="center">
                       <Grid item>
                         <Stack direction="row" spacing={1.25} alignItems="center">
-                          <AvatarCustom alt="profile user" src={'/images/user/avatar-1.png'} size='sm' />
+                          <AvatarCustom alt="profile user" src={'/images/user/avatar-1.png'} size="sm" />
                           <Stack>
                             <Typography variant="body1">{'Truong Nguyen'}</Typography>
                             <Typography variant="body2" color="text.secondary">
@@ -171,4 +183,4 @@ export const Profile = () => {
       </Popper>
     </Box>
   );
-}
+};

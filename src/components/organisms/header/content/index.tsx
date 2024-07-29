@@ -1,11 +1,11 @@
 import GitHubIcon from '@mui/icons-material/GitHub';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import { Badge, Box, IconButton, Link } from "@mui/material";
+import { Badge, Box, IconButton, Link } from '@mui/material';
 
+import { Language } from './language';
 import { Profile } from './profile';
 
 export const HeaderContent = () => {
-
   return (
     <>
       <Box sx={{ flexGrow: 1 }} />
@@ -15,14 +15,20 @@ export const HeaderContent = () => {
         target="_blank"
         disableRipple
         color="secondary"
-        sx={{ color: 'text.primary', bgcolor: 'gray.100', borderRadius: '5px' }}
+        sx={{
+          color: 'text.primary',
+          borderRadius: '5px',
+          ':hover': {
+            bgcolor: 'gray.100',
+          },
+        }}
       >
         <GitHubIcon />
       </IconButton>
-      <Box sx={{ width: '5px' }}/>
+      <Language />
       <IconButton
         color="secondary"
-        sx={{ color: 'text.primary', bgcolor:'transparent', borderRadius: '5px' }}
+        sx={{ color: 'text.primary', bgcolor: 'transparent', borderRadius: '5px' }}
         aria-label="open profile"
         aria-haspopup="true"
       >
@@ -30,8 +36,8 @@ export const HeaderContent = () => {
           <NotificationsNoneOutlinedIcon />
         </Badge>
       </IconButton>
-      <Box sx={{ width: '5px' }}/>
+      <Box sx={{ width: '5px' }} />
       <Profile />
     </>
-  )
-}
+  );
+};

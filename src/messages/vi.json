@@ -11,5 +11,9 @@
     "typography": "Phông chữ",
     "heading1": "Thẻ H1",
     "heading2": "Thẻ H2"
+  },
+  "Header": {
+    "en": "Tiếng Anh (en)",
+    "vi": "Tiếng Việt (vi)"
   }
 }

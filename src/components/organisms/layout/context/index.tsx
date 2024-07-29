@@ -1,7 +1,7 @@
-import { Breakpoint, useMediaQuery } from "@mui/material";
-import { createContext, useEffect, useMemo, useState } from "react";
+import { Breakpoint, useMediaQuery } from '@mui/material';
+import { createContext, useEffect, useMemo, useState } from 'react';
 
-import { theme } from "@/styles/theme";
+import { theme } from '@/styles/theme';
 
 export type DrawContextValue = {
   drawerOpen: boolean;
@@ -10,20 +10,22 @@ export type DrawContextValue = {
 
 export const DrawContext = createContext<DrawContextValue>({} as DrawContextValue);
 
-export const DrawContextProvider = ({ children } : { children:React.ReactNode }) => {
+export const DrawContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [drawerOpen, setDrawerOpen] = useState(true);
 
-  const contextValue = useMemo(() => ({
-    drawerOpen,
-    handlerDrawerOpen: setDrawerOpen
-  }), [drawerOpen]);
+  const contextValue = useMemo(
+    () => ({
+      drawerOpen,
+      handlerDrawerOpen: setDrawerOpen,
+    }),
+    [drawerOpen]
+  );
 
-  const isMobile = useMediaQuery(theme.breakpoints.down('lg' as Breakpoint));
-  useEffect(() => {
-    setDrawerOpen(!isMobile)
-  }, [isMobile]);
+  // const isMobile = useMediaQuery(theme.breakpoints.down('lg' as Breakpoint));
 
-  return (
-    <DrawContext.Provider value={contextValue}>{children}</DrawContext.Provider>
-  )
-}
+  // useEffect(() => {
+  //   setDrawerOpen(!isMobile);
+  // }, [isMobile]);
+
+  return <DrawContext.Provider value={contextValue}>{children}</DrawContext.Provider>;
+};
