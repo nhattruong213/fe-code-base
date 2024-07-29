@@ -1,19 +1,21 @@
-import { Box, List, Typography } from "@mui/material";
-import { useContext } from "react";
+import { Box, List, Typography } from '@mui/material';
+import { useTranslations } from 'next-intl';
+import { useContext } from 'react';
 
-import { DrawContext } from "@/components/organisms/layout/context";
+import { DrawContext } from '@/components/organisms/layout/context';
 
-import { MenuGroup, MenuItem } from "./declaration";
-import { NavCollapse } from "./navCollapse";
-import { NavItem } from "./navItem";
+import { MenuGroup, MenuItem } from './declaration';
+import { NavCollapse } from './navCollapse';
+import { NavItem } from './navItem';
 
 type NavGroupProps = {
-  item: MenuGroup
+  item: MenuGroup;
   key: string;
-}
+};
 export const NavGroup = (props: NavGroupProps) => {
   const { item } = props;
   const { drawerOpen } = useContext(DrawContext);
+  const t = useTranslations('Menu');
 
   const navCollapse = item.children?.map((groupItem: MenuItem) => {
     switch (groupItem.type) {
@@ -32,7 +34,7 @@ export const NavGroup = (props: NavGroupProps) => {
         drawerOpen && (
           <Box sx={{ pl: 3, mb: 1.5 }}>
             <Typography variant="body2" color="textSecondary">
-              {item.title}
+              {t(item.title)}
             </Typography>
           </Box>
         )
@@ -41,5 +43,5 @@ export const NavGroup = (props: NavGroupProps) => {
     >
       {navCollapse}
     </List>
-  )
-}
+  );
+};

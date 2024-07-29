@@ -24,81 +24,80 @@ export type MenuItem = {
 
 export const dashboard: MenuGroup = {
   id: 'group-dashboard',
-  title: 'Home',
+  title: 'home',
   type: 'group',
   children: [
     {
       id: 'dashboard',
-      title: 'Dashboard',
+      title: 'dashboard',
       type: 'item',
       url: '/',
       icon: HomeOutlinedIcon,
-    }
-  ]
-}
+    },
+  ],
+};
 
 export const pages: MenuGroup = {
   id: 'authentication',
-  title: 'Company',
+  title: 'company',
   type: 'group',
   children: [
     {
       id: 'employee',
-      title: 'Employee',
+      title: 'employee',
       type: 'collapse',
       url: '/employees',
       icon: PeopleAltOutlinedIcon,
       children: [
         {
           id: 'employee2',
-          title: 'Official',
+          title: 'official',
           type: 'item',
           url: '/employees/official',
         },
         {
           id: 'employee3',
-          title: 'Probationary',
+          title: 'probationary',
           type: 'item',
           url: '/employees/probationary',
-        }
-      ]
+        },
+      ],
     },
     {
       id: 'use',
-      title: 'Job',
+      title: 'job',
       type: 'item',
       url: '/users',
       icon: WorkOutlineOutlinedIcon,
-    }
-  ]
-}
-
+    },
+  ],
+};
 
 export const style: MenuGroup = {
   id: 'style',
-  title: 'Style',
+  title: 'style',
   type: 'group',
   children: [
     {
       id: 'typography',
-      title: 'Typography',
+      title: 'typography',
       type: 'collapse',
       url: '/typography',
       icon: TypeSpecimenOutlinedIcon,
       children: [
         {
           id: 'typography1',
-          title: 'Heading 1',
+          title: 'heading1',
           type: 'item',
           url: '/typography/h1',
         },
         {
           id: 'typography2',
-          title: 'Heading 2',
+          title: 'heading2',
           type: 'item',
           url: '/typography/h2',
-        }
-      ]
-    }
-  ]
-}
+        },
+      ],
+    },
+  ],
+};

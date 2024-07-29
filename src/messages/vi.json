@@ -1,0 +1,15 @@
+{
+  "Menu": {
+    "dashboard": "Trang chủ",
+    "employee": "Nhân viên",
+    "job": "Job",
+    "official": "Chính thức",
+    "probationary": "Thử việc",
+    "company": "Công ty",
+    "home": "Home",
+    "style": "Style",
+    "typography": "Phông chữ",
+    "heading1": "Thẻ H1",
+    "heading2": "Thẻ H2"
+  }
+}

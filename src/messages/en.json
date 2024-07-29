@@ -1,0 +1,15 @@
+{
+  "Menu": {
+    "dashboard": "Dashboard",
+    "employee": "Employee",
+    "job": "Job",
+    "official": "Official",
+    "probationary": "Probationary",
+    "company": "Company",
+    "home": "Home",
+    "style": "Style",
+    "typography": "Typography",
+    "heading1": "Heading 1",
+    "heading2": "Heading 2"
+  }
+}

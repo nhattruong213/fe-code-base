@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import { ThemeRegistry } from './themeRegistry';
 
-
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -13,12 +12,10 @@ export const queryClient = new QueryClient({
   },
 });
 
-export function AppProvider({ children }: React.PropsWithChildren) {
+export async function AppProvider({ children }: React.PropsWithChildren) {
   return (
-      <ThemeRegistry>
-        <QueryClientProvider client={queryClient}>
-            {children}
-        </QueryClientProvider>
-      </ThemeRegistry>
+    <ThemeRegistry>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </ThemeRegistry>
   );
 }

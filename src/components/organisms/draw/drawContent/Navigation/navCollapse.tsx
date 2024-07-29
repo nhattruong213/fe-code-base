@@ -8,6 +8,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useContext, useEffect, useState } from 'react';
 
 import { DrawContext } from '@/components/organisms/layout/context';
@@ -15,18 +16,16 @@ import { DrawContext } from '@/components/organisms/layout/context';
 import { MenuItem } from './declaration';
 import { NavItem } from './navItem';
 
-
-
 interface NavCollapseProps {
   menu: MenuItem;
   level: number;
 }
 
 export const NavCollapse: React.FC<NavCollapseProps> = ({ menu, level }) => {
-
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(false);
   const { drawerOpen } = useContext(DrawContext);
+  const t = useTranslations('Menu');
 
   const pathname = usePathname();
 
@@ -60,27 +59,27 @@ export const NavCollapse: React.FC<NavCollapseProps> = ({ menu, level }) => {
       });
     }
   }, [pathname, menu.children]);
- 
+
   const menus = menu.children?.map((item) => {
     switch (item.type) {
       case 'item':
         return <NavItem key={item.id} item={item} level={level + 1} />;
- 
+
       default:
         return <NavCollapse key={item.id} menu={item} level={level + 1} />;
-
     }
   });
 
   const Icon = menu.icon;
-  const itemIcon = menu.icon && Icon ? 
-    <Icon style={{ fontSize:  '1.25rem', color: 'inherit' }} /> : 
-    (
+  const itemIcon =
+    menu.icon && Icon ? (
+      <Icon style={{ fontSize: '1.25rem', color: 'inherit' }} />
+    ) : (
       <FiberManualRecordIcon
         sx={{
           width: 6,
           height: 6,
-          color: 'inherit'
+          color: 'inherit',
         }}
         fontSize={level > 0 ? 'inherit' : 'medium'}
       />
@@ -89,21 +88,21 @@ export const NavCollapse: React.FC<NavCollapseProps> = ({ menu, level }) => {
   return (
     <>
       <ListItemButton
-          sx={({ palette }) => ({
+        sx={({ palette }) => ({
           zIndex: 1201,
           pl: drawerOpen ? `${level * 28}px` : 1.5,
           py: !drawerOpen && level === 1 ? 1.25 : 1,
           '&:hover': {
-            bgcolor: level === 1 ? palette.blue.main : 'transparent', 
-            color: `${palette.blue['300']}`
+            bgcolor: level === 1 ? palette.blue.main : 'transparent',
+            color: `${palette.blue['300']}`,
           },
           '&.Mui-selected': {
-            bgcolor:  level === 1 ? palette.blue.main: 'transparent', 
+            bgcolor: level === 1 ? palette.blue.main : 'transparent',
             borderRight: level > 1 ? `2px solid ${palette.primary.main}` : null,
             '&:hover': {
-              bgcolor: palette.blue.main
-            }
-          }
+              bgcolor: palette.blue.main,
+            },
+          },
         })}
         selected={selected}
         onClick={handleClick}
@@ -119,14 +118,14 @@ export const NavCollapse: React.FC<NavCollapseProps> = ({ menu, level }) => {
         <ListItemText
           primary={
             <Typography variant="body1" sx={({ palette }) => ({ color: selected ? palette.blue[300] : '' })}>
-              {menu.title}
+              {t(menu.title)}
             </Typography>
           }
         />
         {open ? (
           <ExpandLessOutlinedIcon sx={({ palette }) => ({ fontSize: '16px', color: selected ? palette.blue[300] : '' })} />
         ) : (
-          <ExpandMoreOutlinedIcon sx={({ palette }) => ({ fontSize: '16px', color: selected ? palette.blue[300] : '' })}/>
+          <ExpandMoreOutlinedIcon sx={({ palette }) => ({ fontSize: '16px', color: selected ? palette.blue[300] : '' })} />
         )}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
@@ -143,8 +142,8 @@ export const NavCollapse: React.FC<NavCollapseProps> = ({ menu, level }) => {
               height: '100%',
               width: '1px',
               opacity: 1,
-              background: palette.primary.light
-            }
+              background: palette.primary.light,
+            },
           })}
         >
           {menus}
