@@ -1,3 +1,5 @@
+'use client';
+
 import { Breakpoint, useMediaQuery } from '@mui/material';
 import { createContext, useEffect, useMemo, useState } from 'react';
 
@@ -11,7 +13,8 @@ export type DrawContextValue = {
 export const DrawContext = createContext<DrawContextValue>({} as DrawContextValue);
 
 export const DrawContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [drawerOpen, setDrawerOpen] = useState(true);
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg' as Breakpoint));
+  const [drawerOpen, setDrawerOpen] = useState(!isMobile);
 
   const contextValue = useMemo(
     () => ({
@@ -21,11 +24,9 @@ export const DrawContextProvider = ({ children }: { children: React.ReactNode })
     [drawerOpen]
   );
 
-  // const isMobile = useMediaQuery(theme.breakpoints.down('lg' as Breakpoint));
-
-  // useEffect(() => {
-  //   setDrawerOpen(!isMobile);
-  // }, [isMobile]);
+  useEffect(() => {
+    setDrawerOpen(!isMobile);
+  }, [isMobile]);
 
   return <DrawContext.Provider value={contextValue}>{children}</DrawContext.Provider>;
 };

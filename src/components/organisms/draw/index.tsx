@@ -18,11 +18,13 @@ export const Draw = () => {
 
   const drawerHeader = useMemo(() => <DrawHeader />, []);
   const drawerContent = useMemo(() => <DrawContent />, []);
+  const container = window !== undefined ? () => window.document.body : undefined;
 
   return (
     <Box component="nav" sx={{ flexShrink: { md: 0 }, zIndex: 1200 }} aria-label="mailbox folders">
       {isMobile ? (
         <Drawer
+          container={container}
           variant="temporary"
           open={drawerOpen}
           onClose={() => handlerDrawerOpen(!drawerOpen)}
