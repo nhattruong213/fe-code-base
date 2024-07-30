@@ -1,7 +1,7 @@
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import { Box, ClickAwayListener, IconButton, List, ListItemButton, ListItemText, Paper, Popper } from '@mui/material';
 import { useLocale, useTranslations } from 'next-intl';
-import { useRef, useState, useTransition } from 'react';
+import { useRef, useState } from 'react';
 
 import { MainCard } from '@/components/atoms/mainCard';
 import { Transitions } from '@/components/atoms/transitions';
