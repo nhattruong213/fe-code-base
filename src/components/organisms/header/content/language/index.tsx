@@ -1,19 +1,25 @@
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import { Box, ClickAwayListener, IconButton, List, ListItemButton, ListItemText, Paper, Popper } from '@mui/material';
-import { useTranslations } from 'next-intl';
-import { useRef, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
+import { useRef, useState, useTransition } from 'react';
 
 import { MainCard } from '@/components/atoms/mainCard';
 import { Transitions } from '@/components/atoms/transitions';
+import { Locale } from '@/config';
 import { LANGUGE_OPTIONS } from '@/constants/languageSelect';
+import { setUserLocale } from '@/services/locale';
 
 export const Language = () => {
   const anchorRef = useRef<HTMLButtonElement | null>(null);
+  const locale = useLocale();
   const [open, setOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState(locale);
   const t = useTranslations('Header');
-  const handleListItemClick = (index: string) => {
-    setSelected(index);
+
+  const handleListItemClick = (value: string) => {
+    const locale = value as Locale;
+    setUserLocale(locale);
+    setSelected(value);
   };
 
   const handleToggle = () => {
