@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { Breakpoint, Drawer, useMediaQuery } from "@mui/material";
-import { Box } from "@mui/system";
-import { useContext, useMemo } from "react";
+import { Breakpoint, Drawer, useMediaQuery } from '@mui/material';
+import { Box } from '@mui/system';
+import { useContext, useMemo } from 'react';
 
-import { drawerWidth } from "@/constants/app";
-import { theme } from "@/styles/theme";
+import { drawerWidth } from '@/constants/app';
+import { theme } from '@/styles/theme';
 
-import { DrawContext } from "../layout/context";
-import { DrawContent } from "./drawContent";
-import { DrawHeader } from "./drawHeader";
-import { MiniDrawer } from "./miniDrawer";
+import { DrawContext } from '../layout/context';
+import { DrawContent } from './drawContent';
+import { DrawHeader } from './drawHeader';
+import { MiniDrawer } from './miniDrawer';
 
 export const Draw = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('lg' as Breakpoint));
@@ -28,17 +28,17 @@ export const Draw = () => {
           onClose={() => handlerDrawerOpen(!drawerOpen)}
           ModalProps={{ keepMounted: true }}
           sx={{
-              display: { xs: 'block', lg: 'none' },
-              '& .MuiDrawer-paper': {
-                boxSizing: 'border-box',
-                width: drawerWidth,
-                borderRight: '1px solid',
-                borderRightColor: 'divider',
-                backgroundImage: 'none',
-                boxShadow: 'inherit'
-              }
-            }}
-          >
+            display: { xs: 'block', lg: 'none' },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: drawerWidth,
+              borderRight: '1px solid',
+              borderRightColor: 'divider',
+              backgroundImage: 'none',
+              boxShadow: 'inherit',
+            },
+          }}
+        >
           {drawerHeader}
           {drawerContent}
         </Drawer>
@@ -50,4 +50,4 @@ export const Draw = () => {
       )}
     </Box>
   );
-}
+};
