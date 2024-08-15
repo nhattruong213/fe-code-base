@@ -1,181 +1,154 @@
-import { PaletteOptions } from '@mui/material/styles/createPalette';
+import { alpha } from '@mui/material/styles';
 
-export const palette: PaletteOptions = {
-  blue: {
-    '900': '#004D60',
-    '800': '#006983',
-    '700': '#008BAD',
-    '600': '#00A1C9',
-    '500': '#00B1DE',
-    '400': '#44C5E5',
-    '300': '#1677ff',
-    '200': '#A4E2F6',
-    '100': '#DAF3FC',
-    '50': '#F6FDFF',
-    main: '#e6f4ff',
+// ----------------------------------------------------------------------
+
+export type ColorSchema = 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error';
+
+declare module '@mui/material/styles/createPalette' {
+  interface TypeBackground {
+    neutral: string;
+  }
+  interface SimplePaletteColorOptions {
+    lighter: string;
+    darker: string;
+  }
+  interface PaletteColor {
+    lighter: string;
+    darker: string;
+  }
+}
+
+// SETUP COLORS
+
+const GREY = {
+  0: '#FFFFFF',
+  100: '#F9FAFB',
+  200: '#F4F6F8',
+  300: '#DFE3E8',
+  400: '#C4CDD5',
+  500: '#919EAB',
+  600: '#637381',
+  700: '#454F5B',
+  800: '#212B36',
+  900: '#161C24',
+};
+
+const PRIMARY = {
+  lighter: '#C8FAD6',
+  light: '#5BE49B',
+  main: '#00A76F',
+  dark: '#007867',
+  darker: '#004B50',
+  contrastText: '#FFFFFF',
+};
+
+const SECONDARY = {
+  lighter: '#EFD6FF',
+  light: '#C684FF',
+  main: '#8E33FF',
+  dark: '#5119B7',
+  darker: '#27097A',
+  contrastText: '#FFFFFF',
+};
+
+const INFO = {
+  lighter: '#CAFDF5',
+  light: '#61F3F3',
+  main: '#00B8D9',
+  dark: '#006C9C',
+  darker: '#003768',
+  contrastText: '#FFFFFF',
+};
+
+const SUCCESS = {
+  lighter: '#D3FCD2',
+  light: '#77ED8B',
+  main: '#22C55E',
+  dark: '#118D57',
+  darker: '#065E49',
+  contrastText: '#ffffff',
+};
+
+const WARNING = {
+  lighter: '#FFF5CC',
+  light: '#FFD666',
+  main: '#FFAB00',
+  dark: '#B76E00',
+  darker: '#7A4100',
+  contrastText: GREY[800],
+};
+
+const ERROR = {
+  lighter: '#FFE9D5',
+  light: '#FFAC82',
+  main: '#FF5630',
+  dark: '#B71D18',
+  darker: '#7A0916',
+  contrastText: '#FFFFFF',
+};
+
+const COMMON = {
+  common: {
+    black: '#000000',
+    white: '#FFFFFF',
   },
-
-  yellow: {
-    '900': '#FF7B00',
-    '800': '#FFA800',
-    '700': '#FFC100',
-    '600': '#FFDA00',
-    '500': '#FFF000',
-    '400': '#FBED3C',
-    '300': '#FDF166',
-    '200': '#FEF694',
-    '100': '#FFFABF',
-    '50': '#FFFDE5',
-    main: '#FFF000',
-  },
-
-  gray: {
-    A100: '#999999',
-    '900': '#1A1A1C',
-    '800': '#414143',
-    '700': '#626264',
-    '600': '#757578',
-    '500': '#949497',
-    '400': '#B4B4B7',
-    '300': '#D8D8DB',
-    '200': '#E8E8EB',
-    '100': '#F1F1F4',
-    '50': '#F8F8FB',
-    '20': '#E2E2E2',
-    main: '#EFF1F3',
-  },
-
-  blueGreen: {
-    '900': '#005448',
-    '800': '#008074',
-    '700': '#009185',
-    '600': '#009E93',
-    '500': '#00ADA4',
-    '400': '#44BCB5',
-    '300': '#7DCFCB',
-    '200': '#B1E2DF',
-    '100': '#E0F3F3',
-    '50': '#F7FDF9',
-    main: '#00ADA4',
-  },
-
-  pink: {
-    '900': '#8D2260',
-    '800': '#B4286A',
-    '700': '#C92B6F',
-    '600': '#E02E76',
-    '500': '#F2317A',
-    '400': '#F24D8F',
-    '300': '#F46CA4',
-    '200': '#F696BF',
-    '100': '#F8BFD8',
-    '50': '#FCE6EF',
-    main: '#F46CA4',
-  },
-
-  red: {
-    '900': '#C92800',
-    '800': '#E1380B',
-    '700': '#EF4011',
-    '600': '#FD4717',
-    '500': '#FF4D1B',
-    '400': '#FF6A3E',
-    '300': '#FF8662',
-    '200': '#FFA98F',
-    '100': '#FFCBBB',
-    '50': '#FDE9E7',
-    main: '#FD4717',
-  },
-
-  limeGreen: {
-    '900': '#2E6C11',
-    '800': '#538E24',
-    '700': '#67A22D',
-    '600': '#7CB637',
-    '500': '#8CC63F',
-    '400': '#9DCF5D',
-    '300': '#AFD77B',
-    '200': '#C6E3A1',
-    '100': '#DDEEC6',
-    '50': '#F1F8E8',
-    main: '#8CC63F',
-  },
-
-  purple: {
-    '900': '#441EA2',
-    '800': '#572BAF',
-    '700': '#6331B6',
-    '600': '#703AC0',
-    '500': '#7A3FC6',
-    '400': '#8E5DCF',
-    '300': '#A27BD8',
-    '200': '#BDA2E3',
-    '100': '#D7C7EE',
-    '50': '#EFE8F8',
-    main: '#7A3FC6',
-  },
-
-  gabaGreen: {
-    '900': '#005F00',
-    '800': '#007D00',
-    '700': '#008E11',
-    '600': '#00A020',
-    '500': '#00AF28',
-    '400': '#44BB4E',
-    '300': '#6BC76E',
-    '200': '#98D699',
-    '100': '#C1E6C1',
-    '50': '#E5F5E6',
-    main: '#00AF28',
-  },
-
-  // Semantic color
-  background: {
-    primary: '#FFFFFF',
-    secondary: '#F8F8FB',
-    disabled: '#F1F1F4',
-    error: '#FDE9E7',
-  },
-
-  text: {
-    body: '#1A1A1C',
-    description: '#757578',
-    placeholder: '#757578',
-    onfill: '#FFFFFF',
-    link: '#00A1C9',
-    error: '#FF4D1B',
-    disabled: '#949497',
-  },
-
-  border: {
-    field: '#1A1A1C',
-    input: '#D8D8DB',
-    divider: '#F1F1F4',
-    warning: '#FFC100',
-    selected: '#00A1C9',
-    alert: '#E0210B',
-    disabled: '#949497',
-    error: '#FF4D1B',
-  },
-
-  icon: {
-    default: '#1A1A1C',
-    primary: '#1A1A1C',
-    secondary: '#A4E2F6',
-    onfill: '#FFFFFF',
-    active: '#00A1C9',
-    error: '#FF4D1B',
-    success: '#7CB637',
-    disabled: '#949497',
-  },
-
-  status: {
-    error: '#FF4D1B',
-    success: '#7CB637',
-    warning: '#FFC100',
-  },
-
+  primary: PRIMARY,
+  secondary: SECONDARY,
+  info: INFO,
+  success: SUCCESS,
+  warning: WARNING,
+  error: ERROR,
+  grey: GREY,
+  divider: alpha(GREY[500], 0.2),
   action: {
-    disabled: '#949497',
+    hover: alpha(GREY[500], 0.08),
+    selected: alpha(GREY[500], 0.16),
+    disabled: alpha(GREY[500], 0.8),
+    disabledBackground: alpha(GREY[500], 0.24),
+    focus: alpha(GREY[500], 0.24),
+    hoverOpacity: 0.08,
+    disabledOpacity: 0.48,
   },
+};
+
+export const palette = (mode: 'light' | 'dark') => {
+  const light = {
+    ...COMMON,
+    mode: 'light',
+    text: {
+      primary: GREY[800],
+      secondary: GREY[600],
+      disabled: GREY[500],
+    },
+    background: {
+      paper: '#FFFFFF',
+      default: '#FFFFFF',
+      neutral: GREY[200],
+    },
+    action: {
+      ...COMMON.action,
+      active: GREY[600],
+    },
+  };
+
+  const dark = {
+    ...COMMON,
+    mode: 'dark',
+    text: {
+      primary: '#FFFFFF',
+      secondary: GREY[500],
+      disabled: GREY[600],
+    },
+    background: {
+      paper: GREY[800],
+      default: GREY[900],
+      neutral: alpha(GREY[500], 0.12),
+    },
+    action: {
+      ...COMMON.action,
+      active: GREY[500],
+    },
+  };
+
+  return mode === 'light' ? light : dark;
 };
