@@ -102,7 +102,7 @@ export const drawerWidth = 260;
 
 export const HEADER = {
   H_MOBILE: 64,
-  H_DESKTOP: 60,
+  H_DESKTOP: 86,
 };
 
 export const NAV = {
