@@ -1,4 +1,4 @@
-import { AppBar, Badge, Box, IconButton, Toolbar, useTheme } from '@mui/material';
+import { AppBar, Badge, Box, IconButton, Toolbar, Typography, useTheme } from '@mui/material';
 
 import { Iconify } from '@/components/atoms/iconify';
 import { SvgColor } from '@/components/atoms/svgColor';
@@ -30,6 +30,9 @@ export const Header = ({ onOpenNav }: Props) => {
           <SvgColor src="/assets/icons/ic_menu_item.svg" />
         </IconButton>
       )}
+      <Typography sx={{ color: theme.palette.primary.main }} variant="h5">
+        {'HRM'}
+      </Typography>
 
       <Box sx={{ flexGrow: 1 }} />
       <Language />
