@@ -1,12 +1,14 @@
-import { Box, SxProps, TableHead, TableRow, TableSortLabel, Theme, useTheme } from '@mui/material';
+import { Box, SxProps, TableHead, TableRow, TableSortLabel, Theme } from '@mui/material';
 
 import { CheckBox } from '@/components/atoms/checkbox';
 import { TableCell } from '@/components/atoms/table/tableCell';
 
+import { HeaderLabelItem } from './type';
+
 type Props = {
   order?: 'asc' | 'desc';
   orderBy?: string;
-  headLabel: any[];
+  headLabel: HeaderLabelItem[];
   rowCount?: number;
   numSelected?: number;
   onSort?: (id: string) => void;
@@ -28,13 +30,12 @@ const visuallyHidden = {
 
 export const TableHeadNNT = (props: Props) => {
   const { sx, rowCount = 0, numSelected, headLabel, orderBy, order, onSelectAllRows, onSort } = props;
-  const theme = useTheme();
 
   return (
     <TableHead sx={sx}>
       <TableRow>
         {onSelectAllRows && (
-          <TableCell padding="checkbox" sx={{ background: theme.palette.background.neutral }}>
+          <TableCell padding="checkbox">
             <CheckBox
               indeterminate={!!numSelected && numSelected < rowCount}
               checked={!!rowCount && numSelected === rowCount}
@@ -47,9 +48,9 @@ export const TableHeadNNT = (props: Props) => {
             key={headCell.id}
             align={headCell.align || 'left'}
             sortDirection={orderBy === headCell.id ? order : false}
-            sx={{ width: headCell.width, minWidth: headCell.minWidth, background: theme.palette.background.neutral }}
+            sx={{ width: headCell.width, minWidth: headCell.minWidth }}
           >
-            {onSort ? (
+            {onSort && !headCell.orderBy ? (
               <TableSortLabel
                 hideSortIcon
                 active={orderBy === headCell.id}

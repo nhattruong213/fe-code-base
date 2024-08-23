@@ -3,6 +3,20 @@ import { Box, Breadcrumbs, Stack, Typography } from '@mui/material';
 import { LinkItem } from './linkItem';
 import { CustomBreadcrumbsProps } from './type';
 
+const Separator = () => {
+  return (
+    <Box
+      component="span"
+      sx={{
+        width: 4,
+        height: 4,
+        borderRadius: '50%',
+        bgcolor: 'text.disabled',
+      }}
+    />
+  );
+};
+
 export const BreadcrumbsNNT = (props: CustomBreadcrumbsProps) => {
   const { links, action, heading, activeLast, sx, ...res } = props;
   const lastLink = links[links.length - 1].name;
@@ -18,7 +32,7 @@ export const BreadcrumbsNNT = (props: CustomBreadcrumbsProps) => {
           )}
 
           {!!links.length && (
-            <Breadcrumbs {...res}>
+            <Breadcrumbs separator={<Separator />} {...res}>
               {links.map((link) => (
                 <LinkItem key={link.name || ''} link={link} activeLast={activeLast} disabled={link.name === lastLink} />
               ))}

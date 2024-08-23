@@ -22,5 +22,8 @@
     "mode": "Chế độ",
     "layout": "Bố cục",
     "presets": "Mẫu cài sẵn"
+  },
+  "table": {
+    "noData": "Không có dữ liệu"
   }
 }

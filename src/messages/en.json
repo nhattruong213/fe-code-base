@@ -22,5 +22,8 @@
     "mode": "Mode",
     "layout": "Layout",
     "presets": "Presets"
+  },
+  "table": {
+    "noData": "No Data"
   }
 }

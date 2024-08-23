@@ -30,10 +30,6 @@ export const Header = ({ onOpenNav }: Props) => {
           <SvgColor src="/assets/icons/ic_menu_item.svg" />
         </IconButton>
       )}
-      <Typography sx={{ color: theme.palette.primary.main }} variant="h5">
-        {'HRM'}
-      </Typography>
-
       <Box sx={{ flexGrow: 1 }} />
       <Language />
       <SettingsButton />
