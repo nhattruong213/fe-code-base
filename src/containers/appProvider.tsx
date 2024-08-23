@@ -2,10 +2,14 @@
 
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Provider } from 'react-redux';
 
 import { SettingsDrawer } from '@/components/molecules/drawSetting/drawSetting';
 import { SettingProvider } from '@/context/settings';
+import { globalStore } from '@/stores';
 import { ThemeProvider } from '@/styles/theme';
+
+import { AuthContainer } from './authContainer';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,7 +31,11 @@ export function AppProvider({ children }: React.PropsWithChildren) {
       <AppRouterCacheProvider>
         <ThemeProvider>
           <SettingsDrawer />
-          <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+          <Provider store={globalStore}>
+            <AuthContainer>
+              <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+            </AuthContainer>
+          </Provider>
         </ThemeProvider>
       </AppRouterCacheProvider>
     </SettingProvider>

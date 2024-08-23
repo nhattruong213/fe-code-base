@@ -7,6 +7,7 @@ import { AvatarCustom } from '@/components/atoms/avatar';
 import { Iconify } from '@/components/atoms/iconify';
 import { MainCard } from '@/components/atoms/mainCard';
 import { Transitions } from '@/components/atoms/transitions';
+import { useLogout } from '@/hooks/useLogout';
 
 import { ProfileTab } from './profileTab';
 import { SettingTab } from './settingTab';
@@ -36,6 +37,7 @@ const TabPanel = ({ children, value, index, ...other }: TabPanelProps) => {
 export const Profile = () => {
   const anchorRef = useRef<HTMLButtonElement | null>(null);
   const [open, setOpen] = useState<boolean>(false);
+  const { logout } = useLogout();
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -109,7 +111,7 @@ export const Profile = () => {
                       </Grid>
                       <Grid item>
                         <Tooltip title="Logout">
-                          <IconButton size="large">
+                          <IconButton size="large" onClick={logout}>
                             <Iconify icon="hugeicons:logout-05" width={22} />
                           </IconButton>
                         </Tooltip>

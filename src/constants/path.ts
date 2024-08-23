@@ -9,7 +9,7 @@ export const navPaths = {
     lists: '/users/lists',
   },
   product: {
-    root: '/product',
+    root: '/product/list',
     details: '/details',
     new: '/new',
   },

@@ -1,4 +1,4 @@
-import { AppBar, Badge, Box, IconButton, Toolbar, Typography, useTheme } from '@mui/material';
+import { AppBar, Badge, Box, IconButton, Toolbar, useTheme } from '@mui/material';
 
 import { Iconify } from '@/components/atoms/iconify';
 import { SvgColor } from '@/components/atoms/svgColor';

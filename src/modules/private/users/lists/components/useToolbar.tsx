@@ -20,10 +20,9 @@ type Props = {
   filters: IUserTableFilters;
   onFilters: (name: string, value: IUserTableFilterValue) => void;
   roleOptions: string[];
-  statusOptions: string[];
 };
 
-export const UserTableToolbar = ({ filters, onFilters, roleOptions, statusOptions }: Props) => {
+export const UserTableToolbar = ({ filters, onFilters, roleOptions }: Props) => {
   const popover = usePopover();
 
   const handleFilterName = useCallback(
@@ -36,13 +35,6 @@ export const UserTableToolbar = ({ filters, onFilters, roleOptions, statusOption
   const handleFilterRole = useCallback(
     (event: SelectChangeEvent<string[]>) => {
       onFilters('role', typeof event.target.value === 'string' ? event.target.value.split(',') : event.target.value);
-    },
-    [onFilters]
-  );
-
-  const handleFilterStatus = useCallback(
-    (event: SelectChangeEvent<string>) => {
-      onFilters('status', event.target.value);
     },
     [onFilters]
   );
@@ -85,33 +77,6 @@ export const UserTableToolbar = ({ filters, onFilters, roleOptions, statusOption
             {roleOptions.map((option) => (
               <MenuItem key={option} value={option}>
                 <Checkbox disableRipple size="small" checked={filters.role.includes(option)} />
-                {option}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl
-          size="small"
-          sx={{
-            flexShrink: 0,
-            width: { xs: 1, md: 200 },
-          }}
-        >
-          <InputLabel>{'Status'}</InputLabel>
-
-          <Select
-            value={filters.status}
-            onChange={handleFilterStatus}
-            input={<OutlinedInput label="Status" />}
-            MenuProps={{
-              PaperProps: {
-                sx: { maxHeight: 240 },
-              },
-            }}
-          >
-            {statusOptions.map((option) => (
-              <MenuItem key={option} value={option}>
                 {option}
               </MenuItem>
             ))}

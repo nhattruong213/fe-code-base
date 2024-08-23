@@ -1,6 +1,7 @@
 import Box, { BoxProps } from '@mui/material/Box';
+// @mui
 import { alpha } from '@mui/material/styles';
-import { m } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import { Logo } from '@/components/atoms/logo';
@@ -34,7 +35,7 @@ export const LoadingScreen = ({ sx, ...other }: BoxProps) => {
       {...other}
     >
       <>
-        <m.div
+        <motion.div
           animate={{
             scale: [1, 0.9, 0.9, 1, 1],
             opacity: [1, 0.48, 0.48, 1, 1],
@@ -47,10 +48,10 @@ export const LoadingScreen = ({ sx, ...other }: BoxProps) => {
           }}
         >
           <Logo sx={{ width: 64, height: 64 }} />
-        </m.div>
+        </motion.div>
 
         <Box
-          component={m.div}
+          component={motion.div}
           animate={{
             scale: [1.6, 1, 1, 1.6, 1.6],
             rotate: [270, 0, 0, 270, 270],
@@ -67,7 +68,7 @@ export const LoadingScreen = ({ sx, ...other }: BoxProps) => {
         />
 
         <Box
-          component={m.div}
+          component={motion.div}
           animate={{
             scale: [1, 1.2, 1.2, 1, 1],
             rotate: [0, 270, 270, 0, 0],

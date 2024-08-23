@@ -20,7 +20,7 @@ export const NavVertical = (props: NavProps) => {
 
   const renderContent = (
     <>
-      <Logo sx={{ mt: 3, ml: 3, mb: 1 }} />
+      <Logo sx={{ mt: 3, ml: 3, mb: 1, width: 160, height: 160 }} />
       <SimpleBarScroll>
         <NavSectionVertical data={navData} />
         <Box sx={{ flexGrow: 1 }} />

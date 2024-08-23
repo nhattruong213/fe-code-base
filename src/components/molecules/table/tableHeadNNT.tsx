@@ -14,6 +14,8 @@ type Props = {
   onSort?: (id: string) => void;
   onSelectAllRows?: (checked: boolean) => void;
   sx?: SxProps<Theme>;
+  sxRows?: SxProps<Theme>;
+  isSelectedAll?: boolean;
 };
 
 const visuallyHidden = {
@@ -29,7 +31,7 @@ const visuallyHidden = {
 } as const;
 
 export const TableHeadNNT = (props: Props) => {
-  const { sx, rowCount = 0, numSelected, headLabel, orderBy, order, onSelectAllRows, onSort } = props;
+  const { sx, sxRows, rowCount = 0, numSelected, headLabel, isSelectedAll, orderBy, order, onSelectAllRows, onSort } = props;
 
   return (
     <TableHead sx={sx}>
@@ -37,8 +39,8 @@ export const TableHeadNNT = (props: Props) => {
         {onSelectAllRows && (
           <TableCell padding="checkbox">
             <CheckBox
-              indeterminate={!!numSelected && numSelected < rowCount}
-              checked={!!rowCount && numSelected === rowCount}
+              indeterminate={!!numSelected && numSelected < rowCount && !isSelectedAll}
+              checked={isSelectedAll}
               onChange={(event: React.ChangeEvent<HTMLInputElement>) => onSelectAllRows(event.target.checked)}
             />
           </TableCell>
@@ -48,9 +50,9 @@ export const TableHeadNNT = (props: Props) => {
             key={headCell.id}
             align={headCell.align || 'left'}
             sortDirection={orderBy === headCell.id ? order : false}
-            sx={{ width: headCell.width, minWidth: headCell.minWidth }}
+            sx={{ width: headCell.width, minWidth: headCell.minWidth, ...sxRows }}
           >
-            {onSort && !headCell.orderBy ? (
+            {onSort && headCell.orderBy !== false ? (
               <TableSortLabel
                 hideSortIcon
                 active={orderBy === headCell.id}

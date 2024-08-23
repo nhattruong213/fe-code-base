@@ -6,11 +6,12 @@ interface Props extends StackProps {
   action?: React.ReactNode;
   rowCount: number;
   numSelected: number;
+  isSelectedAll?: boolean;
   onSelectAllRows: (checked: boolean) => void;
 }
 
 export const TableSelectActionNNT = (props: Props) => {
-  const { action, rowCount, numSelected, onSelectAllRows, sx, ...other } = props;
+  const { action, rowCount, numSelected, onSelectAllRows, isSelectedAll, sx, ...other } = props;
   if (!numSelected) {
     return null;
   }
@@ -34,8 +35,8 @@ export const TableSelectActionNNT = (props: Props) => {
       {...other}
     >
       <CheckBox
-        indeterminate={!!numSelected && numSelected < rowCount}
-        checked={!!rowCount && numSelected === rowCount}
+        indeterminate={!!numSelected && numSelected < rowCount && !isSelectedAll}
+        checked={isSelectedAll}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => onSelectAllRows(event.target.checked)}
       />
 

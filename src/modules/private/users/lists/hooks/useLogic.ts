@@ -164,7 +164,6 @@ export const useLogic = () => {
   ];
 
   const roles = [...new Set(data.map((item) => item.role))];
-  const status = [...new Set(data.map((item) => item.status))];
 
   const [tableData] = useState(data);
   const [filters, setFilters] = useState(defaultFilters);
@@ -244,7 +243,6 @@ export const useLogic = () => {
     notFound,
     filters,
     roles,
-    status,
     onSelectRow,
     onChangeRowsPerPage,
     onSelectAllRows,
