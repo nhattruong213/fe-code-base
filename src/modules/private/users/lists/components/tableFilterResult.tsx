@@ -84,7 +84,7 @@ const Block = ({ label, children, sx, ...other }: BlockProps) => {
         {label}
       </Box>
 
-      <Stack spacing={1} direction="row" flexWrap="wrap">
+      <Stack direction="row" flexWrap="wrap" gap={1}>
         {children}
       </Stack>
     </Stack>

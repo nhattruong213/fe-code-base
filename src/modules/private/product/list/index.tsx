@@ -1,26 +1,24 @@
+'use client';
+
+import { alpha } from '@mui/material';
 import { isEqual } from 'lodash';
 import { useCallback, useState } from 'react';
 
+import { Card } from '@/components/atoms/card';
+import { Label } from '@/components/atoms/label';
+import { Tab, Tabs } from '@/components/atoms/tabs';
+import { BreadcrumbsNNT } from '@/components/molecules/breadcrumbs';
+import { DataTableNNT } from '@/components/molecules/table';
 import { useTableNNT } from '@/components/molecules/table/hooks/useTableNNT';
-import { getComparator } from '@/components/molecules/table/utils';
+import { TableColumnsType } from '@/components/molecules/table/type';
+import { navPaths } from '@/constants/path';
 
-import { IUserItem, IUserTableFilters, IUserTableFilterValue } from '../type';
+import { UserTableFiltersResult } from '../../users/lists/components/tableFilterResult';
+import { UserTableToolbar } from '../../users/lists/components/useToolbar';
+import { IUserItem, IUserTableFilters, IUserTableFilterValue } from '../../users/lists/type';
 
-export const useLogic = () => {
-  const defaultFilters: IUserTableFilters = {
-    name: '',
-    role: [],
-    status: 'all',
-  };
-
-  const header = [
-    { id: 'name', label: 'Name' },
-    { id: 'company', label: 'Company', width: 180 },
-    { id: 'role', label: 'Role', width: 220 },
-    { id: 'status', label: 'Status', width: 180 },
-  ];
-
-  const data = [
+export const ProductList = () => {
+  const data: IUserItem[] = [
     {
       id: 1,
       name: 'Nguyễn Văn A',
@@ -162,35 +160,27 @@ export const useLogic = () => {
       status: 'pending',
     },
   ];
-
-  const roles = [...new Set(data.map((item) => item.role))];
-
-  const [tableData] = useState(data);
-  const [filters, setFilters] = useState(defaultFilters);
+  const columns: TableColumnsType<IUserItem>[] = [
+    {
+      id: 'name',
+      label: 'Name',
+    },
+    { id: 'company', label: 'Company', width: 180, orderBy: false },
+    { id: 'role', label: 'Role', width: 220 },
+    { id: 'status', label: 'Status', width: 180 },
+  ];
+  const defaultFilters: IUserTableFilters = {
+    name: '',
+    role: [],
+    status: 'all',
+  };
   const table = useTableNNT();
-  const { selected, page, rowsPerPage, order, orderBy, onSelectRow, onChangeRowsPerPage, onSelectAllRows, onSort, onChangePage, onResetPage } = table;
+  const roles = [...new Set(data.map((item) => item.role))];
+  const [filters, setFilters] = useState(defaultFilters);
+  const canReset = !isEqual(defaultFilters, filters);
 
-  const applyFilter = ({
-    inputData,
-    comparator,
-    filters,
-  }: {
-    inputData: IUserItem[];
-    comparator: (a: any, b: any) => number;
-    filters: IUserTableFilters;
-  }) => {
+  const applyFilter = ({ inputData, filters }: { inputData: IUserItem[]; filters: IUserTableFilters }) => {
     const { name, status, role } = filters;
-
-    const stabilizedThis = inputData.map((el, index) => [el, index] as const);
-
-    stabilizedThis.sort((a, b) => {
-      const order = comparator(a[0], b[0]);
-      if (order !== 0) return order;
-
-      return a[1] - b[1]; // giu nguyen
-    });
-
-    inputData = stabilizedThis.map((el) => el[0]);
 
     if (name) {
       inputData = inputData.filter((user) => user.name.toLowerCase().indexOf(name.toLowerCase()) !== -1);
@@ -207,18 +197,11 @@ export const useLogic = () => {
     return inputData;
   };
 
-  const dataFiltered = applyFilter({
-    inputData: tableData,
-    comparator: getComparator(order, orderBy),
-    filters,
-  });
-
-  const canReset = !isEqual(defaultFilters, filters);
-  const notFound = (!dataFiltered.length && canReset) || !dataFiltered.length;
-
+  const dataOrder: IUserItem[] = table.applyOrderby<IUserItem>(data);
+  const dataFiltered = applyFilter({ inputData: dataOrder, filters });
   const handleFilters = useCallback(
     (name: string, value: IUserTableFilterValue) => {
-      onResetPage();
+      table.onResetPage();
       setFilters((prevState) => ({
         ...prevState,
         [name]: value,
@@ -231,24 +214,75 @@ export const useLogic = () => {
     setFilters(defaultFilters);
   }, []);
 
-  return {
-    data: dataFiltered,
-    header: header,
-    selected,
-    page,
-    rowsPerPage,
-    order,
-    orderBy,
-    canReset,
-    notFound,
-    filters,
-    roles,
-    onSelectRow,
-    onChangeRowsPerPage,
-    onSelectAllRows,
-    onSort,
-    onChangePage,
-    handleFilters,
-    handleResetFilters,
-  };
+  const STATUS_OPTIONS = [
+    { value: 'all', label: 'All' },
+    { value: 'active', label: 'Active' },
+    { value: 'pending', label: 'Pending' },
+    { value: 'banned', label: 'Banned' },
+    { value: 'rejected', label: 'Rejected' },
+  ];
+
+  const handleFilterStatus = useCallback(
+    (event: React.SyntheticEvent, newValue: string) => {
+      handleFilters('status', newValue);
+    },
+    [handleFilters]
+  );
+
+  return (
+    <>
+      <BreadcrumbsNNT links={[{ name: 'Home', href: navPaths.dashboard }, { name: 'Product', href: navPaths.product.root }, { name: 'List' }]} />
+      <Card sx={{ mt: 2 }}>
+        <Tabs
+          value={filters.status}
+          variant="scrollable"
+          scrollButtons="auto"
+          allowScrollButtonsMobile={true}
+          onChange={handleFilterStatus}
+          sx={{
+            px: 2.5,
+            boxShadow: (theme) => `inset 0 -2px 0 0 ${alpha(theme.palette.grey[500], 0.08)}`,
+          }}
+        >
+          {STATUS_OPTIONS.map((tab) => (
+            <Tab
+              key={tab.value}
+              iconPosition="end"
+              value={tab.value}
+              label={tab.label}
+              icon={
+                <Label
+                  variant={((tab.value === 'all' || tab.value === filters.status) && 'filled') || 'soft'}
+                  color={
+                    (tab.value === 'active' && 'success') ||
+                    (tab.value === 'pending' && 'warning') ||
+                    (tab.value === 'banned' && 'error') ||
+                    'default'
+                  }
+                >
+                  {tab.value === 'all' && data.length}
+                  {tab.value === 'active' && data.filter((user) => user.status === 'active').length}
+
+                  {tab.value === 'pending' && data.filter((user) => user.status === 'pending').length}
+                  {tab.value === 'banned' && data.filter((user) => user.status === 'banned').length}
+                  {tab.value === 'rejected' && data.filter((user) => user.status === 'rejected').length}
+                </Label>
+              }
+            />
+          ))}
+        </Tabs>
+        <UserTableToolbar onFilters={handleFilters} filters={filters} roleOptions={roles} />
+        {canReset && (
+          <UserTableFiltersResult
+            filters={filters}
+            onFilters={handleFilters}
+            onResetFilters={handleResetFilters}
+            results={dataFiltered.length}
+            sx={{ p: 2.5, pt: 0 }}
+          />
+        )}
+        <DataTableNNT rowsPerPageOptions={[5, 10, 25]} panigation={true} columns={columns} items={dataFiltered} {...table} />
+      </Card>
+    </>
+  );
 };

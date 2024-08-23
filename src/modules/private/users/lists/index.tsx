@@ -30,7 +30,6 @@ export const UserList = () => {
     filters,
     roles,
     canReset,
-    status,
     onSelectRow,
     onChangeRowsPerPage,
     onSelectAllRows,
@@ -44,7 +43,7 @@ export const UserList = () => {
     <>
       <BreadcrumbsNNT links={[{ name: 'Home', href: navPaths.dashboard }, { name: 'User', href: navPaths.user.root }, { name: 'List' }]} />
       <Card sx={{ mt: 4 }}>
-        <UserTableToolbar statusOptions={status} filters={filters} onFilters={handleFilters} roleOptions={roles} />
+        <UserTableToolbar filters={filters} onFilters={handleFilters} roleOptions={roles} />
         {canReset && (
           <UserTableFiltersResult
             filters={filters}
@@ -57,7 +56,7 @@ export const UserList = () => {
         <TableContainer sx={{ position: 'relative', overflow: 'unset' }}>
           <TableSelectActionNNT
             numSelected={selected.length}
-            rowCount={data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).length}
+            rowCount={data.length}
             onSelectAllRows={(checked) =>
               onSelectAllRows(
                 checked,
@@ -78,7 +77,7 @@ export const UserList = () => {
                 onSelectAllRows={(checked) =>
                   onSelectAllRows(
                     checked,
-                    data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => row.id)
+                    data.map((row) => row.id)
                   )
                 }
                 rowCount={data.length}
@@ -88,7 +87,6 @@ export const UserList = () => {
                 orderBy={orderBy}
                 onSort={onSort}
               />
-
               <TableBody>
                 {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
                   <TableRow hover selected={selected.includes(row.id)} key={row.id}>
