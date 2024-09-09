@@ -1,19 +1,29 @@
 {
-  "Menu": {
-    "dashboard": "Dashboard",
-    "employee": "Employee",
-    "job": "Job",
-    "official": "Official",
-    "probationary": "Probationary",
-    "company": "Company",
-    "home": "Home",
-    "style": "Style",
-    "typography": "Typography",
-    "heading1": "Heading 1",
-    "heading2": "Heading 2"
-  },
   "Header": {
-    "en": "English (en)",
-    "vi": "Vietnamese (vi)"
+    "en": "English",
+    "vi": "Vietnamese"
+  },
+  "Nav": {
+    "overview": "Overview",
+    "app": "App",
+    "ecommerce": "Ecommerce",
+    "analytics": "Analytics",
+    "management": "Management",
+    "profile": "Profile",
+    "cards": "Cards",
+    "list": "List",
+    "product": "Product",
+    "details": "Details",
+    "order": "Order",
+    "user": "User"
+  },
+  "Settings": {
+    "settings": "Settings",
+    "mode": "Mode",
+    "layout": "Layout",
+    "presets": "Presets"
+  },
+  "table": {
+    "noData": "No Data"
   }
 }

@@ -1,8 +1,15 @@
 'use client';
 
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Provider } from 'react-redux';
 
-import { ThemeRegistry } from './themeRegistry';
+import { SettingsDrawer } from '@/components/molecules/drawSetting/drawSetting';
+import { SettingProvider } from '@/context/settings';
+import { globalStore } from '@/stores';
+import { ThemeProvider } from '@/styles/theme';
+
+import { AuthContainer } from './authContainer';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,8 +21,23 @@ export const queryClient = new QueryClient({
 
 export function AppProvider({ children }: React.PropsWithChildren) {
   return (
-    <ThemeRegistry>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </ThemeRegistry>
+    <SettingProvider
+      defaultSettings={{
+        themeMode: 'light', // 'light' | 'dark'
+        themeLayout: 'vertical', // 'vertical' | 'horizontal' | 'mini',
+        themeColorPresets: 'default', // 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red'
+      }}
+    >
+      <AppRouterCacheProvider>
+        <ThemeProvider>
+          <SettingsDrawer />
+          <Provider store={globalStore}>
+            <AuthContainer>
+              <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+            </AuthContainer>
+          </Provider>
+        </ThemeProvider>
+      </AppRouterCacheProvider>
+    </SettingProvider>
   );
 }

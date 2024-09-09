@@ -5,3 +5,7 @@ export type APIConfig = {
   accessToken?: boolean;
   factoryData?: object;
 };
+
+export interface EndPointParameter {
+  [index: string]: string | number;
+}

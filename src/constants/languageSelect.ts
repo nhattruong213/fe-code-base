@@ -5,15 +5,18 @@ export const LANGUAGE_SELECT = {
 export type TLanguge = {
   key: string;
   code: string;
+  icon: string;
 };
 
 export const LANGUGE_OPTIONS: TLanguge[] = [
   {
     key: 'en',
     code: 'en',
+    icon: 'flagpack:gb-nir',
   },
   {
     key: 'vi',
     code: 'vi',
+    icon: 'flagpack:vn',
   },
 ];

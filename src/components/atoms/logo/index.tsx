@@ -1,25 +1,18 @@
-import { ButtonBase, Chip, SxProps, Theme } from '@mui/material';
-import Stack from '@mui/material/Stack';
+import { Link as LinkMui, SxProps, Theme } from '@mui/material';
 import Link from 'next/link';
 
-import { LogoMain } from './LogoMain';
+import { SvgColor } from '../svgColor';
 
 type LogoSectionProps = {
-  sx?: SxProps<Theme>; 
-}
+  sx?: SxProps<Theme>;
+};
 
 export const Logo: React.FC<LogoSectionProps> = ({ sx }) => {
+  const logo = <SvgColor src="/assets/icons/logo/logo.svg" sx={{ width: 40, height: 40, cursor: 'pointer', ...sx }} />;
+
   return (
-    <ButtonBase disableRipple component={Link} href='' sx={sx}>
-      <Stack direction="row" spacing={1} alignItems="center">
-        <LogoMain />
-        <Chip
-          label={'Version 1'}
-          variant="outlined"
-          size="small"
-          sx={{ mt: 0.5, ml: 1, fontSize: '0.725rem', height: 20, '& .MuiChip-label': { px: 0.5 } }}
-        />
-      </Stack>
-    </ButtonBase>
+    <LinkMui component={Link} href="/" sx={{ display: 'contents' }}>
+      {logo}
+    </LinkMui>
   );
 };
