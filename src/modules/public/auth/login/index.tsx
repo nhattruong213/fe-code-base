@@ -15,12 +15,12 @@ import { Iconify } from '@/components/atoms/iconify';
 import { TextField } from '@/components/atoms/textField';
 import { useBoolean } from '@/hooks/useBoolean';
 
-// ----------------------------------------------------------------------
+import { useLogic } from './hooks/useLogic';
 
 export const Login = () => {
   const password = useBoolean();
-
-  const LoginSchema = Yup.object().shape({
+  const { onSubmit } = useLogic();
+  const LoginSchema = Yup.object({
     email: Yup.string().required('Email is required').email('Email must be a valid email address'),
     password: Yup.string().required('Password is required'),
   });
@@ -40,10 +40,12 @@ export const Login = () => {
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = handleSubmit(() => {});
+  const handleOnSubmit = handleSubmit((data) => {
+    onSubmit(data);
+  });
 
   return (
-    <FormProvider methods={methods} onSubmit={onSubmit}>
+    <FormProvider methods={methods} onSubmit={handleOnSubmit}>
       <Stack spacing={2} sx={{ mb: 5 }}>
         <Typography variant="h4">{'Sign in to Device'}</Typography>
 
