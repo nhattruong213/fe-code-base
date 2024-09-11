@@ -40,6 +40,7 @@ export async function fetcher<TRequestSchema extends ZodTypeAny, TResponseSchema
     );
 
     const res = await fetch(init?.method === 'GET' || isQueryData ? url : combineUrl, { ...(init ?? {}), headers, body });
+
     const { data, errors } = await res.json();
 
     return responseSchema.parse({

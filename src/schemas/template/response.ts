@@ -9,7 +9,7 @@ export const Response = z.object({
   data: z.any().optional(),
   success: z.boolean().optional(),
   statusCode: z.number(),
-  errors: z.array(Error).optional(),
+  errors: Error.optional(),
 });
 
 export const SuccessResponse = Response.transform((val) => ({

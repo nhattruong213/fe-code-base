@@ -19,4 +19,5 @@ export type UseMutationProps<TRequestSchema extends ZodTypeAny, TResponseSchema 
   isDefaultSuccess?: boolean;
   loadingKey?: string;
   isQueryData?: boolean;
+  accessToken?: string;
 };

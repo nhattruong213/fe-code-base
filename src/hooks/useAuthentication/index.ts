@@ -6,11 +6,7 @@ import { authAction } from '@/stores/reducers/auth';
 import { TToken } from '@/types/auth';
 import { decodeAuth, encodeAuth } from '@/utils/auth';
 
-import { useAuthenticationChange } from '../useAuthenticationChange';
-
 export const useAuthentication = () => {
-  useAuthenticationChange();
-
   const { isLoadedToken, token } = useAppSelector((state) => state.user);
 
   const dispatch = useAppDispatch();
