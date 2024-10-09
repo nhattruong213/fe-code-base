@@ -5,7 +5,6 @@ import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 
-import { FaceBookChat } from '@/components/molecules/facebook';
 import { AppProvider } from '@/containers/appProvider';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -27,7 +26,6 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
           <AppProvider>{children}</AppProvider>
-          <FaceBookChat />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -24,16 +24,8 @@ const authSlice = createSlice({
     resetUser: (state) => {
       state.data = null;
     },
-    setToken: (state, action: PayloadAction<TToken | null>) => {
-      state.token = action.payload;
-      state.isLoadedToken = true;
-    },
-    removeToken: (state) => {
-      state.token = null;
-    },
     removeUser: (state) => {
       state.data = null;
-      state.token = null;
     },
   },
 });

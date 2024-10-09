@@ -1,7 +1,7 @@
 import { APIConfig } from '@/types/api';
 
 export const postRefeshToken: APIConfig = {
-  endPoint: '/_api/reserve/v1/auth/refresh-token',
+  endPoint: '/api/auth/refresh',
   keys: ['get-refresh-token'],
   method: 'POST',
   accessToken: false,
