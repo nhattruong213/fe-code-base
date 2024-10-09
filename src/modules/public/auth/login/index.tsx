@@ -2,24 +2,27 @@
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { Link as LinkMui, useTheme } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 
 import { FormProvider } from '@/components/atoms/formProvider';
 import { Iconify } from '@/components/atoms/iconify';
 import { TextField } from '@/components/atoms/textField';
+import { ForgotPassword } from '@/constants/path';
 import { useBoolean } from '@/hooks/useBoolean';
 
 import { useLogic } from './hooks/useLogic';
 
 export const Login = () => {
   const password = useBoolean();
-  const { onSubmit } = useLogic();
+  const { onSubmit, message, isPending } = useLogic();
+  const theme = useTheme();
   const LoginSchema = Yup.object({
     email: Yup.string().required('Email is required').email('Email must be a valid email address'),
     password: Yup.string().required('Password is required'),
@@ -35,10 +38,7 @@ export const Login = () => {
     defaultValues,
   });
 
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-  } = methods;
+  const { handleSubmit } = methods;
 
   const handleOnSubmit = handleSubmit((data) => {
     onSubmit(data);
@@ -48,12 +48,6 @@ export const Login = () => {
     <FormProvider methods={methods} onSubmit={handleOnSubmit}>
       <Stack spacing={2} sx={{ mb: 5 }}>
         <Typography variant="h4">{'Sign in to Device'}</Typography>
-
-        <Stack direction="row" spacing={0.5}>
-          <Typography variant="body2">{'New user?'}</Typography>
-
-          <Link variant="subtitle2">{'Create an account'}</Link>
-        </Stack>
       </Stack>
 
       <Stack spacing={2.5}>
@@ -73,12 +67,12 @@ export const Login = () => {
             ),
           }}
         />
-
-        <Link variant="body2" color="inherit" underline="always" sx={{ alignSelf: 'flex-end' }}>
+        <Typography sx={{ color: theme.palette.error.main }}>{message}</Typography>
+        <LinkMui component={Link} href={ForgotPassword} variant="body2" color="inherit" underline="always" sx={{ alignSelf: 'flex-end' }}>
           {'Forgot password?'}
-        </Link>
+        </LinkMui>
 
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting}>
+        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isPending}>
           {'Login'}
         </LoadingButton>
       </Stack>

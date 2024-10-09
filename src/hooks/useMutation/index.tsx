@@ -14,7 +14,18 @@ import { UseMutationProps } from './type';
 export const useMutation = <TRequestSchema extends ZodTypeAny, TResponseSchema extends ZodType<TResponse>>(
   props: UseMutationProps<TRequestSchema, TResponseSchema>
 ) => {
-  const { apiConfig, requestSchema, responseSchema, options, onError, onSuccess, fetchOptions, parameters, isQueryData = false } = props;
+  const {
+    apiConfig,
+    requestSchema,
+    responseSchema,
+    options,
+    onError,
+    onSuccess,
+    fetchOptions,
+    parameters,
+    isQueryData = false,
+    accessToken = null,
+  } = props;
 
   const { token } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
@@ -40,7 +51,7 @@ export const useMutation = <TRequestSchema extends ZodTypeAny, TResponseSchema e
         parameters,
         payload: variables,
         isQueryData,
-        accessToken: apiConfig.accessToken === true ? token?.accessToken || undefined : '',
+        accessToken: accessToken || apiConfig.accessToken === true ? token?.accessToken || undefined : '',
         refreshToken: token?.refreshToken || undefined,
         onRefreshToken,
         onError,

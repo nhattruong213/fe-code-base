@@ -18,3 +18,6 @@ export const navPaths = {
     details: '/order/details',
   },
 };
+
+export const ForgotPassword = '/auth/forgot-password';
+export const LoginPath = '/auth/login';

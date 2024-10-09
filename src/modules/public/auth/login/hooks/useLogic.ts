@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { useMutation } from '@/hooks/useMutation';
 import { LoginReq, TLoginReq } from '@/schemas/auth/request';
 import { LoginRes } from '@/schemas/auth/response';
@@ -9,7 +11,7 @@ const LOGIN_LOADING_KEY = 'login-loading';
 
 export const useLogic = () => {
   const dispatch = useAppDispatch();
-
+  const [message, setMessage] = useState('');
   const { mutate, isPending } = useMutation({
     apiConfig: postLogin,
     requestSchema: LoginReq,
@@ -23,9 +25,12 @@ export const useLogic = () => {
         })
       );
     },
+    onError: () => {
+      setMessage('Email or password is incorrect.');
+    },
   });
 
   const onSubmit = (data: TLoginReq) => mutate(data);
 
-  return { onSubmit, isPending };
+  return { onSubmit, isPending, message };
 };
