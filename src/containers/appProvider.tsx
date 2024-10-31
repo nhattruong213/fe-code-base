@@ -9,8 +9,6 @@ import { SettingProvider } from '@/context/settings';
 import { globalStore } from '@/stores';
 import { ThemeProvider } from '@/styles/theme';
 
-import { AuthContainer } from './authContainer';
-
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -32,9 +30,7 @@ export function AppProvider({ children }: React.PropsWithChildren) {
         <ThemeProvider>
           <SettingsDrawer />
           <Provider store={globalStore}>
-            <AuthContainer>
-              <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-            </AuthContainer>
+            <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
           </Provider>
         </ThemeProvider>
       </AppRouterCacheProvider>

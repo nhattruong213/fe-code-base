@@ -1,6 +1,6 @@
 'use client';
 
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Link as LinkMui, useTheme } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
+import { z } from 'zod';
 
 import { FormProvider } from '@/components/atoms/formProvider';
 import { Iconify } from '@/components/atoms/iconify';
@@ -23,18 +23,18 @@ export const Login = () => {
   const password = useBoolean();
   const { onSubmit, message, isPending } = useLogic();
   const theme = useTheme();
-  const LoginSchema = Yup.object({
-    email: Yup.string().required('Email is required').email('Email must be a valid email address'),
-    password: Yup.string().required('Password is required'),
+  const LoginSchema = z.object({
+    email: z.string().min(1, 'Email is required').email('Email must be a valid email address'),
+    password: z.string().min(1, 'Password is required'),
   });
 
   const defaultValues = {
-    email: 'truongnn@hybrid-technologies.vn',
+    email: 'nguyennhattruong11223344@gmail.com',
     password: '12345678',
   };
 
   const methods = useForm({
-    resolver: yupResolver(LoginSchema),
+    resolver: zodResolver(LoginSchema),
     defaultValues,
   });
 

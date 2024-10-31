@@ -10,8 +10,8 @@ import { Iconify } from '@/components/atoms/iconify';
 import { TextCode } from '@/components/atoms/textCode';
 import { LoginPath } from '@/constants/path';
 
-import { TVerifyCode } from '../type';
 import { ForgotPasswordStep } from '../constant';
+import { TVerifyCode } from '../type';
 
 type TProp = {
   handleVerifyCode: (data: TVerifyCode) => void;

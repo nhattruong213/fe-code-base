@@ -1,53 +1,42 @@
 'use client';
 
 import { useQuery as useReactQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { output, ZodType, ZodTypeAny } from 'zod';
 
+import { LoginPath } from '@/constants/path';
 import { queryClient } from '@/containers/appProvider';
 import { TResponse } from '@/schemas/template/response';
-import { useAppDispatch, useAppSelector } from '@/stores/hooks';
-import { authAction } from '@/stores/reducers/auth';
-import { fetchClientSide } from '@/utils/api/fetchClientSide';
-import { TRefreshTokenFetcher } from '@/utils/api/type';
+import { fetcher } from '@/utils/api/axios/fetcher';
 
-import { useLogout } from '../useLogout';
 import { UseQueryProps } from './type';
 
 export const useQuery = <TRequestSchema extends ZodTypeAny, TResponseSchema extends ZodType<TResponse>>(
   props: UseQueryProps<TRequestSchema, TResponseSchema>
 ) => {
-  const { apiConfig, requestSchema, responseSchema, options, onError, onSuccess, fetchOptions, parameters, payload } = props;
-
-  const { token } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
-  const { logout } = useLogout();
-
-  const onRefreshToken = ({ accessToken, refreshToken }: TRefreshTokenFetcher) => {
-    dispatch(
-      authAction.setToken({
-        accessToken: accessToken || null,
-        refreshToken: refreshToken || null,
-      })
-    );
-  };
-
+  const { apiConfig, requestSchema, responseSchema, options, onError, onSuccess, payload } = props;
+  const router = useRouter();
   const queryResult = useReactQuery<output<TResponseSchema>>({
     ...(options || ({} as any)),
     queryFn: () => {
-      return fetchClientSide<TRequestSchema, TResponseSchema>({
-        apiConfig,
+      return fetcher<TRequestSchema, TResponseSchema>({
+        endpoint: apiConfig.endPoint,
+        init: {
+          ...options,
+          method: apiConfig.method,
+          next: {
+            tags: apiConfig.keys,
+          },
+        },
         responseSchema,
         requestSchema,
-        options: fetchOptions,
-        parameters,
-        accessToken: apiConfig.accessToken === true ? token?.accessToken || undefined : '',
-        refreshToken: token?.refreshToken || undefined,
         payload,
-        onRefreshToken,
-        logout,
         onError,
         onSuccess,
+        onRedirect: () => {
+          router.push(LoginPath);
+        },
       });
     },
     refetchOnWindowFocus: false,
